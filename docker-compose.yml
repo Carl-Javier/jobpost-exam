@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: carl
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: jobpost
+        container_name: jobpost-exam
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - jobpost
+
+    mysql:
+        build: ./docker-compose/mysql
+        platform: linux/amd64
+        ports:
+            - "3307:3306"
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=1
+        volumes:
+            - ./docker-compose/mysql/sql:/docker-entrypoint-initdb.d
+            - ./docker-compose/mysql/mysql-data:/var/lib/mysql
+            - ./docker-compose/mysql/localtime:/etc/localtime:ro
+        networks:
+            - jobpost
+
+    nginx:
+        image: nginx:alpine
+        container_name: jobpost-nginx
+        restart: unless-stopped
+        ports:
+            - 8080:80
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d/
+        networks:
+            - jobpost
+
+networks:
+    jobpost:
+        driver: bridge
