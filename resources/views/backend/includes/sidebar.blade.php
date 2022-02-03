@@ -18,6 +18,33 @@
                 :text="__('Dashboard')" />
         </li>
 
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.jobs.list')"
+                :active="activeClass(Route::is('admin.jobs.*'), 'c-active')"
+                icon="c-sidebar-nav-icon cil-building"
+                :text="__('Jobs Management')" />
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.types.list')"
+                :active="activeClass(Route::is('admin.types.*'), 'c-active')"
+                icon="c-sidebar-nav-icon cil-laptop"
+                :text="__('Job Type List')" />
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.tags.list')"
+                :active="activeClass(Route::is('admin.tag.*'), 'c-active')"
+                icon="c-sidebar-nav-icon cil-tag"
+                :text="__('Job Tag List')" />
+        </li>
+
         @if (
             $logged_in_user->hasAllAccess() ||
             (

@@ -26,7 +26,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(AuthSeeder::class);
-        $this->call(AnnouncementSeeder::class);
+        $this->call(CountriesTableSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(TypeSeeder::class);
+        $this->call(JobSeeder::class);
 
         Model::reguard();
     }

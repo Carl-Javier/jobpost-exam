@@ -116,7 +116,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Cache Tags
+    | Cache JobTag
     |--------------------------------------------------------------------------
     |
     | Cache tags are not supported when using the file or database cache

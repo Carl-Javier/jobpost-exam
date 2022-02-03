@@ -13,6 +13,11 @@ Route::get('/', [HomeController::class, 'index'])
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Home'), route('frontend.index'));
     });
+Route::get('show/{id}', [HomeController::class, 'show'])
+    ->name('show')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Show Jobs'), route('frontend.show'));
+    });
 
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')
